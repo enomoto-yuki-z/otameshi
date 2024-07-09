@@ -9,7 +9,7 @@ on:
 
 jobs:
   check-branch:
-    runs-on: [self-hosted, reshop-navi]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check if the source branch is HotFix
