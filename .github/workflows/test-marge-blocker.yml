@@ -1,0 +1,21 @@
+name: Restrict Merge to Main
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  check-branch:
+    runs-on: [self-hosted, reshop-navi]
+
+    steps:
+      - name: Check if the source branch is HotFix
+        run: |
+          if [[ "${{ github.head_ref }}" != "HotFix" ]]; then
+            echo "Only the 'HotFix' branch can be merged into 'main'."
+            exit 1
+          fi
+        shell: bash
